@@ -22,7 +22,6 @@ public class Venda {
     @Id
     private String codigo;
 
-    @NotBlank
     private Date dataCompra;
 
     private String descricao;

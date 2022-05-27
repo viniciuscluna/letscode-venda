@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @NoArgsConstructor
@@ -17,7 +20,9 @@ public class VendaDto {
 
     private double valorTotal;
 
-    private VendaUsuarioDto usuarioDto;
+    @NotNull
+    private VendaUsuarioDto usuario;
 
+    @NotEmpty
     private List<VendaProdutoDto> produtos;
 }

@@ -8,11 +8,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class VendaUsuarioMapper {
     public VendaUsuarioDto map(VendaUsuario vendaUsuario){
+        if(vendaUsuario==null)return null;
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(vendaUsuario, VendaUsuarioDto.class);
     }
 
     public VendaUsuario map(VendaUsuarioDto vendaUsuario){
+        if(vendaUsuario==null)return null;
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(vendaUsuario, VendaUsuario.class);
     }
