@@ -50,9 +50,9 @@ public class SaleService {
         var result = repository.save(saleInsertion);
 
         //Send to kafka topic for deletion
-        saleRequestDto.getProducts().forEach(product ->{
-            kafkaTemplate.send(topic,product);
-        });
+//        saleRequestDto.getProducts().forEach(product ->{
+//            kafkaTemplate.send(topic,product);
+//        });
 
 
         return mapper.map(result);
