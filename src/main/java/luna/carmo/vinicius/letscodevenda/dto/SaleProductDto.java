@@ -5,10 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class VendaUsuarioDto {
-    private String nome;
+public class SaleProductDto {
+    private String id;
+    private String name;
+    private float price;
 }

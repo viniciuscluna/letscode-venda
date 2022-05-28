@@ -7,7 +7,6 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotBlank;
 import java.util.Date;
 import java.util.List;
 
@@ -16,17 +15,15 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document
-public class Venda {
-
-    @NotBlank
+public class Sale {
     @Id
-    private String codigo;
+    private String code;
 
-    private Date dataCompra;
+    private float totalPrice;
 
-    private String descricao;
+    private Date date;
 
-    private VendaUsuario usuario;
+    private SaleUser user;
 
-    private List<VendaProduto> produtos;
+    private List<SaleProduct> products;
 }
