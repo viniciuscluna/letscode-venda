@@ -24,16 +24,18 @@ public class ProductService {
     }
 
     public Mono<ProductContractDto> getProductById(String id){
-            return webClient
-                    .get()
-                    .uri("api/product/" + id)
-                    .retrieve()
-                    .onStatus(HttpStatus::is4xxClientError, clientResponse -> {
-                        if(clientResponse.statusCode() == HttpStatus.NOT_FOUND)
-                            return Mono.error(new NotFoundException("Produto não encontrado"));
-                        return Mono.error(new GeneralEndpointException(clientResponse.toString()));
-                    })
-                    .onStatus(HttpStatus::is5xxServerError, clientResponse -> Mono.error(new GeneralEndpointException(clientResponse.toString())))
-                    .bodyToMono(ProductContractDto.class);
+//            return webClient
+//                    .get()
+//                    .uri("api/product/" + id)
+//                    .retrieve()
+//                    .onStatus(HttpStatus::is4xxClientError, clientResponse -> {
+//                        if(clientResponse.statusCode() == HttpStatus.NOT_FOUND)
+//                            return Mono.error(new NotFoundException("Produto não encontrado"));
+//                        return Mono.error(new GeneralEndpointException(clientResponse.toString()));
+//                    })
+//                    .onStatus(HttpStatus::is5xxServerError, clientResponse -> Mono.error(new GeneralEndpointException(clientResponse.toString())))
+//                    .bodyToMono(ProductContractDto.class);
+
+        return Mono.just(new ProductContractDto(java.util.UUID.randomUUID().toString(), "Example",  20));
     }
 }
