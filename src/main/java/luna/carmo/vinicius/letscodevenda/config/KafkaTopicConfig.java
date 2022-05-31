@@ -13,11 +13,11 @@ import org.springframework.kafka.config.TopicBuilder;
 @RequiredArgsConstructor
 public class KafkaTopicConfig {
 
-//    @Value("${spring.kafka.template.default-topic}")
-//    private String topic;
-//
-//    @Bean
-//    public NewTopic sellProduct(){
-//        return TopicBuilder.name(topic).build();
-//    }
+    @Value("${spring.kafka.template.default-topic}")
+    private String topic;
+
+    @Bean
+    public NewTopic sellProduct(){
+        return TopicBuilder.name(topic).build();
+    }
 }

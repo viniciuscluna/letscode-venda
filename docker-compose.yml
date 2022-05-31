@@ -1,17 +1,31 @@
 version: '3'
 services:
-  docker-app:
+  course-sale:
     image: viniciuscluna/letscode-venda
     ports:
-      - "8080:8080"
+      - "8080:8082"
     environment:
       - spring.profiles.active=prod
     depends_on:
-      - docker-mongo
-  docker-mongo:
+      - course-sale-mongo
+  course-sale-mongo:
     image: mongo
     ports:
       - "27017:27017"
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=qwerty
+  product-catalog:
+    image: jmmoura/letscode-products
+    ports:
+      - "8080:8083"
+    depends_on:
+      - product-catalog-postgres
+  product-catalog-postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=products
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
