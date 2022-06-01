@@ -11,6 +11,7 @@ import luna.carmo.vinicius.letscodevenda.utils.SaleMapper;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Value;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Date;
@@ -34,9 +35,13 @@ public class SaleService {
         return mapper.map(repository.findById(id));
     }
 
+    public Flux<SaleDto> getSales(){
+        return mapper.map(repository.findAll());
+    }
+
     public Mono<SaleDto> persistSale(SaleRequestDto saleRequestDto) {
         //Validation
-        var user = userService.getUserByEmail(saleRequestDto.getEmail()).map(m -> new SaleUser(m.getId(),m.getName()));
+        var user = userService.getUserByEmail(saleRequestDto.getEmail()).map(m -> new SaleUser(m.getId(),m.getFirstName() + " " + m.getLastName()));
         var products = saleRequestDto.getProducts().stream().map(p ->
             productService.getProductById(p).map(m -> new SaleProduct(m.getId(),m.getName(),m.getPrice()))
         ).collect(Collectors.toList());

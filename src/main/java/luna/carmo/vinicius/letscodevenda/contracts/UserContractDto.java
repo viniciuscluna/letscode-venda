@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserContractDto {
     private String id;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String cep;
 }
